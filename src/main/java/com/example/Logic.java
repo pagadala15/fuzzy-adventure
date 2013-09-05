@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,16 +8,32 @@ import java.util.List;
  * Time: 12:51 PM
  */
 public class Logic {
-    // TODO: This is a stupid way of handling primes. It's just here to get basic tests going. Make sure to fix this!
-    private List<Integer> somePrimes = Arrays.asList(2, 3, 5, 7, 11);
 
+	/**
+	 * This method takes long integer as input and confirms if this an Prime or not
+	 * {@link class Logic, method isPrime()}
+	 * @param number
+	 * @return boolean
+	 */
     public boolean isPrime(long number) {
-        return somePrimes.contains((int) number);
-    }
+    	//Checking if the number is less than 2, then number is not a prime
+    	if( number < 2 ) return false;
+    	// Checking if the number is a prime using mod operator
+    	for (long i=2; i<number; i++)
+    	{
+    		if(number%i == 0) return false;
+    	}
+    	return true;
+     }
 
+    /**
+     * This method is written for future implementation, currently this is unused method.
+     * @param number
+     * @return long 
+     */
     public long nextPrimeFrom(long number) {
         int result = (int) number + 1;
-        while (!somePrimes.contains(result)) result++;
+        while (!isPrime(result)) result++;
         return result;
     }
 }

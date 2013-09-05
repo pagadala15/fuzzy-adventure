@@ -21,7 +21,8 @@ class LogicTest extends Specification {
         number << [2, 3, 5]
     }
 
-    @Unroll
+
+	    @Unroll
     def 'sanity test for next prime after #number'() {
         expect:
         logic.nextPrimeFrom(number) == next
@@ -32,4 +33,23 @@ class LogicTest extends Specification {
         3      | 5
         5      | 7
     }
+	
+	@Unroll
+	def 'Testing primeness of #number less than 2 and Confirming not prime'() {
+		expect:
+		!logic.isPrime(number)
+
+		where:
+		number << [0,1,-1, -2]
+	}
+
+	@Unroll
+	def 'Testing and confirming logic for Non-Primes #number'() {
+		expect:
+		!logic.isPrime(number)
+
+		where:
+		number << [4, 6, 8, 150]
+	}
+
 }

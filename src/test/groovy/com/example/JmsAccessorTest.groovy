@@ -61,4 +61,20 @@ class JmsAccessorTest extends Specification {
         then:
         numberOutputs == ['1', '2', '3', '4']
     }
+	
+	/*
+	 * Test case for checking Prime number Queue 
+	 */
+	def 'sending prime works'() {
+		when:
+		accessor.sendToPrimes(2, true)
+		accessor.sendToPrimes(5, false)
+		accessor.sendToPrimes(2, false)
+		accessor.sendToPrimes(11, true)
+		sleep 100
+
+		then:
+		primes == ['2', '5', '2', '11']
+	}
+
 }
